@@ -1,0 +1,63 @@
+name: clean 🧹
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches: ["main", "feat/**", "feature/**"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  format:
+    name: format
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: format
+        run: |
+          yarn install
+          yarn format:check
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: lint
+        run: |
+          yarn install
+          yarn lint:check
+
+  ts-check:
+    name: ts-check
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: ts-check
+        run: |
+          yarn install
+          yarn ts-check
