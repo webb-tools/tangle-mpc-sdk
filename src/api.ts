@@ -1,4 +1,4 @@
-import "@webb-tools/tangle-substrate-types/build/interfaces/augment-types";
+import "@webb-tools/tangle-substrate-types";
 
 import { ApiPromise, WsProvider } from "@polkadot/api";
 
@@ -7,7 +7,7 @@ import { TANGLE_RPC_ENDPOINT } from "./constants";
 const apiPromiseCache = new Map<string, Promise<ApiPromise>>();
 
 export async function getTangleApi(
-  endpoint = TANGLE_RPC_ENDPOINT
+  endpoint = TANGLE_RPC_ENDPOINT,
 ): Promise<ApiPromise> {
   const possiblyCachedInstance = apiPromiseCache.get(endpoint);
 

@@ -19,15 +19,13 @@
     "paths": {
       "@polkadot/api-augment": [
         "@webb-tools/tangle-substrate-types/build/interfaces/augment-api.d.ts"
-      ],
-      "@polkadot/types-augment": [
-        "@webb-tools/tangle-substrate-types/build/interfaces/augment-types.d.ts"
       ]
     }
   },
   "include": [
-    "src",
-    "node_modules/@polkadot/api",
-    "node_modules/@polkadot/types"
-  ]
+    "./src/**/*.ts",
+    "./node_modules/@polkadot/api",
+    "./node_modules/@webb-tools/tangle-substrate-types",
+  ],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
