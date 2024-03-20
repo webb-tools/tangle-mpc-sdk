@@ -1,9 +1,10 @@
-import "@webb-tools/tangle-substrate-types";
+// import { getTangleApi } from "./api";
 
-export * from "./api";
+import { createSharedProfile } from "./roles";
 
 function main() {
   console.log("Hello, world!");
+  createSharedProfile();
 }
 
 main();

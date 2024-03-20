@@ -1,29 +1,47 @@
-import { Keyring } from "@polkadot/api";
+import { Keyring } from "@polkadot/keyring";
 import { KeyringPair } from "@polkadot/keyring/types";
-import { u128 } from "@polkadot/types";
 
-import { getTangleApiPromise } from "./api";
+import { getTangleApi } from "./api";
 
+// TODO: add comments
 export async function createProfile(keyRingPair: KeyringPair) {
-  const api = await getTangleApiPromise();
-  //   const registry = api.registry;
+  // TODO: add try catch
+  const api = await getTangleApi();
 
-  const nominators = await api.query.staking.nominators.entries();
+  const createProfileTx = api.tx.roles.createProfile("Independent", 2);
 
-  // const nextJobId = await api.query.jobs.nextJobId();
+  // TODO: handle events
+  const hash = await createProfileTx.signAndSend(keyRingPair);
 
-  //   const creatingProfileTx = api.tx.roles.createProfile({
-  //     Shared: {
-  //       records: [
-  //         {
-  //           role: {
-  //             Tss: {
-  //               DfnsCGGMP21Secp256k1: {},
-  //             },
-  //           },
-  //         },
-  //       ],
-  //       amount: new u128(registry, 100),
-  //     },
-  //   });
+  return hash;
+}
+
+export async function createSharedProfile() {
+  const api = await getTangleApi();
+
+  const sr25519Keyring = new Keyring({ type: "sr25519" });
+  const ALICE = sr25519Keyring.addFromUri("//Alice");
+
+  const createSharedProfileTx = api.tx.roles.createProfile(
+    {
+      Shared: {
+        records: [
+          {
+            role: {
+              Tss: {
+                DfnsCGGMP21Secp256k1: {},
+              },
+            },
+          },
+        ],
+        amount: "10_000_000_000_000_000_000",
+      },
+    },
+    10
+  );
+
+  // TODO: handle events
+  const hash = await createSharedProfileTx.signAndSend(ALICE);
+
+  return hash;
 }
