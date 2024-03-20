@@ -1,3 +1,4 @@
+// TODO: fix import es-lint error
 /* eslint-disable */
 import { KeyringPair } from "@polkadot/keyring/types";
 
@@ -10,14 +11,14 @@ import type { Profile } from "./types";
 export async function createProfile(
   keyRingPair: KeyringPair,
   profile: Profile,
-  maxActiveServices: number | null,
+  maxActiveServices: number | null
 ) {
   // TODO: add try catch
   const api = await getTangleApi();
 
   const createProfileTx = api.tx.roles.createProfile(
     profile,
-    maxActiveServices,
+    maxActiveServices
   );
 
   return getTxPromise(keyRingPair, createProfileTx);

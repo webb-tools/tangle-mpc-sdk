@@ -65,7 +65,9 @@ export type ProfileRecord = {
 
 export type Profile =
   | {
-      Independent: ProfileRecord[];
+      Independent: {
+        records: ProfileRecord[];
+      };
     }
   | {
       Shared: {
