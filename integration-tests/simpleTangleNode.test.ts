@@ -1,5 +1,3 @@
-/* eslint-disable import/order */
-
 import "@webb-tools/tangle-substrate-types";
 
 import isCi from "is-ci";

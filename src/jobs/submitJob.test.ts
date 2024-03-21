@@ -2,6 +2,7 @@ import { ApiPromise, WsProvider } from "@polkadot/api";
 import { Keyring } from "@polkadot/keyring";
 import type { Option } from "@polkadot/types";
 import type { PalletRolesRestakingLedger } from "@polkadot/types/lookup";
+import { expect } from "chai";
 
 import submitJob from "./submitJob";
 
@@ -11,7 +12,7 @@ const ENDPOINT = "ws://127.0.0.1:9944";
 describe("submitJob()", () => {
   let api: ApiPromise;
 
-  beforeAll(async () => {
+  before(async () => {
     const provider = new WsProvider(ENDPOINT);
     api = await ApiPromise.create({ provider, noInitWarn: true });
   });
@@ -112,17 +113,17 @@ describe("submitJob()", () => {
       "Destroy",
     );
 
-    expect(expectedJobId.eq(jobId)).toBe(true);
-    expect(roleType.isTss).toBe(true);
-    expect(roleType.asTss.isDfnsCGGMP21Secp256k1).toBe(true);
+    expect(expectedJobId.eq(jobId)).to.be.true;
+    expect(roleType.isTss).to.be.true;
+    expect(roleType.asTss.isDfnsCGGMP21Secp256k1).to.be.true;
 
-    expect(jobDetails.expiry.eq(ttl)).toBe(true);
-    expect(jobDetails.ttl.eq(ttl)).toBe(true);
-    expect(jobDetails.jobType.isDkgtssPhaseOne).toBe(true);
-    expect(jobDetails.fallback.isDestroy).toBe(true);
-  }, 50000);
+    expect(jobDetails.expiry.eq(ttl)).to.be.true;
+    expect(jobDetails.ttl.eq(ttl)).to.be.true;
+    expect(jobDetails.jobType.isDkgtssPhaseOne).to.be.true;
+    expect(jobDetails.fallback.isDestroy).to.be.true;
+  });
 
-  afterAll(async () => {
+  after(async () => {
     await api.disconnect();
   });
 });
