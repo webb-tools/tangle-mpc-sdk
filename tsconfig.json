@@ -13,5 +13,10 @@
     "module": "commonjs",
     "moduleResolution": "node"
   },
-  "include": ["src"]
+  "include": [
+    "./src/**/*.ts",
+    "./node_modules/@polkadot/api",
+    "./node_modules/@webb-tools/tangle-substrate-types"
+  ],
+  "exclude": ["node_modules", "**/node_modules/*"]
 }
