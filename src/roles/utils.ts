@@ -27,7 +27,9 @@ const SERVICE_TYPE_TO_TANGLE_MAP = {
   [Role.LIGHT_CLIENT_RELAYING]: "LightClientRelaying",
   [Role.ZK_SAAS_GROTH16]: { ZkSaaS: "ZkSaaSGroth16" },
   [Role.ZK_SAAS_MARLIN]: { ZkSaaS: "ZkSaaSMarlin" },
-  [Role.TSS_ZENGOGG20SECP256K1]: { Tss: "ZengoGG20Secp256k1" },
+  [Role.TSS_SILENT_SHARD_DKLS23SECP256K1]: {
+    Tss: "SilentShardDKLS23Secp256k1",
+  },
   [Role.TSS_DFNS_CGGMP21SECP256K1]: { Tss: "DfnsCGGMP21Secp256k1" },
   [Role.TSS_DFNS_CGGMP21SECP256R1]: { Tss: "DfnsCGGMP21Secp256r1" },
   [Role.TSS_DFNS_CGGMP21STARK]: { Tss: "DfnsCGGMP21Stark" },

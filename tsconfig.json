@@ -12,20 +12,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es5",
-    // Override types from @polkadot/api-augment with generated types from Tangle
-    // Ref: https://polkadot.js.org/docs/api/examples/promise/typegen/#typescript-config
-    "baseUrl": "node_modules",
-    "paths": {
-      "@polkadot/api-augment": [
-        "@webb-tools/tangle-substrate-types/build/interfaces/augment-api.d.ts"
-      ]
-    }
+    "target": "es5"
   },
-  "include": [
-    "./src/**/*.ts",
-    "./node_modules/@polkadot/api",
-    "./node_modules/@webb-tools/tangle-substrate-types",
-  ],
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "include": ["./src/**/*.ts"]
 }
