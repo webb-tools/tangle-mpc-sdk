@@ -1,7 +1,7 @@
-import '@webb-tools/tangle-substrate-types'
+import "@webb-tools/tangle-substrate-types";
 
 function main() {
-  console.log('Hello, world!')
+  console.log("Hello, world!");
 }
 
-main()
+main();
