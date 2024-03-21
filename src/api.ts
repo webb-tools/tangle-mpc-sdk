@@ -4,7 +4,7 @@ import { ApiPromise, WsProvider } from "@polkadot/api";
 
 import { TANGLE_RPC_ENDPOINT } from "./constants";
 
-const apiPromiseCache = new Map<string, Promise<ApiPromise>>();
+const apiPromiseCache = new Map<string, ApiPromise>();
 
 export async function getTangleApi(
   endpoint = TANGLE_RPC_ENDPOINT,
@@ -15,7 +15,7 @@ export async function getTangleApi(
 
   const wsProvider = new WsProvider(endpoint);
 
-  const newInstance = ApiPromise.create({
+  const newInstance = await ApiPromise.create({
     provider: wsProvider,
     noInitWarn: true,
   });

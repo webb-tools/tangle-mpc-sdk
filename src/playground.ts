@@ -5,14 +5,16 @@ import { cryptoWaitReady } from "@polkadot/util-crypto";
 import { createProfile } from "./roles";
 import { Role, SERVICE_TYPE_TO_TANGLE_MAP } from "./roles/types";
 
-async function playground() {
+(async () => {
   try {
     await cryptoWaitReady();
 
     const keyring = new Keyring({ type: "sr25519" });
     const alice = keyring.addFromUri("//Alice");
 
-    // // Create a profile for Alice
+    // Create a profile for Alice
+    // createProfile successful (can check the event in Polkadot Dashboard)
+    // but the transaction is not finalized so no hash is returned
     const hash1 = await createProfile(
       alice,
       {
@@ -31,7 +33,6 @@ async function playground() {
 
     console.log(`Alice's profile creation transaction hash: ${hash1}`);
 
-    // TODO: check console.log
     // const bob = keyring.addFromUri("//Bob");
 
     // // Create a profile for Alice
@@ -57,6 +58,4 @@ async function playground() {
   } catch (error) {
     console.error("An error occurred:", error);
   }
-}
-
-playground();
+})();

@@ -75,3 +75,9 @@ export type Profile =
         amount: BN;
       };
     };
+
+export interface RolesPallet {
+  createProfile: (profile: Profile, maxActiveServices: BN | null) => void;
+  deleteProfile: () => void;
+  updateProfile: (profile: Profile) => void;
+}

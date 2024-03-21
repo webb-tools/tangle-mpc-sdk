@@ -1,7 +1,3 @@
-// import { getTangleApi } from "./api";
-
-async function main() {
-  console.log("Hello, world!");
-}
-
-main();
+export { default as Account } from "./account";
+export { getTangleApi } from "./api";
+export { createProfile, deleteProfile, updateProfile } from "./roles";
