@@ -26,11 +26,12 @@ async function playground() {
           amount: new BN("10000000000000000000"),
         },
       },
-      10
+      10,
     );
 
     console.log(`Alice's profile creation transaction hash: ${hash1}`);
 
+    // TODO: check console.log
     // const bob = keyring.addFromUri("//Bob");
 
     // // Create a profile for Alice
