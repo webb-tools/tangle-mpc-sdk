@@ -1,5 +1,7 @@
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import { Keyring } from '@polkadot/keyring'
+import type { Option } from '@polkadot/types'
+import type { PalletRolesRestakingLedger } from '@polkadot/types/lookup'
 
 import submitJob from './submitJob'
 
@@ -43,37 +45,48 @@ describe('submitJob()', () => {
       10
     )
 
-    // Sign and send the transaction for creating Alice's profile
-    await new Promise(resolve => {
-      let unsub: () => void | undefined
+    const [aliceLedger, bobLedger] = await api.queryMulti<
+      [Option<PalletRolesRestakingLedger>, Option<PalletRolesRestakingLedger>]
+    >([
+      [api.query.roles.ledger, ALICE.address],
+      [api.query.roles.ledger, BOB.address],
+    ])
 
-      creatingProfileTx
-        .signAndSend(ALICE, async ({ status }) => {
-          if (status.isInBlock) {
-            unsub?.()
-            resolve(0)
-          }
-        })
-        .then(unsubscrive => {
-          unsub = unsubscrive
-        })
-    })
+    // Sign and send the transaction for creating Alice's profile if it doesn't exist
+    if (aliceLedger.isNone) {
+      await new Promise(resolve => {
+        let unsub: () => void | undefined
 
-    // Sign and send the transaction for creating Bob's profile
-    await new Promise(resolve => {
-      let unsub: () => void | undefined
+        creatingProfileTx
+          .signAndSend(ALICE, async ({ status }) => {
+            if (status.isInBlock) {
+              unsub?.()
+              resolve(0)
+            }
+          })
+          .then(unsubscrive => {
+            unsub = unsubscrive
+          })
+      })
+    }
 
-      creatingProfileTx
-        .signAndSend(BOB, async ({ status }) => {
-          if (status.isInBlock) {
-            unsub?.()
-            resolve(0)
-          }
-        })
-        .then(unsubscribe => {
-          unsub = unsubscribe
-        })
-    })
+    // Sign and send the transaction for creating Bob's profile if it doesn't exist
+    if (bobLedger.isNone) {
+      await new Promise(resolve => {
+        let unsub: () => void | undefined
+
+        creatingProfileTx
+          .signAndSend(BOB, async ({ status }) => {
+            if (status.isInBlock) {
+              unsub?.()
+              resolve(0)
+            }
+          })
+          .then(unsubscribe => {
+            unsub = unsubscribe
+          })
+      })
+    }
 
     // Get the job id
     const expectedJobId = await api.query.jobs.nextJobId()

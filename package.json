@@ -17,7 +17,7 @@
     "format:check": "prettier --check \"**/*.{ts,js}\" ",
     "format:fix": "prettier --write \"**/*.{ts,js}\" ",
     "ts-check": "tsc --noEmit -p ./tsconfig.json",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
