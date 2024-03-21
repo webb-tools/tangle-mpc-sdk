@@ -36,6 +36,6 @@
   },
   "dependencies": {
     "@polkadot/api": "^10.12.2",
-    "@webb-tools/tangle-substrate-types": "file:/Volumes/tins_ssd/webb/tangle/types/build"
+    "@webb-tools/tangle-substrate-types": "^0.5.4"
   }
 }

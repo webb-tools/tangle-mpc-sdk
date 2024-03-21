@@ -3051,8 +3051,10 @@
     "@webassemblyjs/ast" "1.12.1"
     "@xtuc/long" "4.2.2"
 
-"@webb-tools/tangle-substrate-types@file:../../../../Volumes/tins_ssd/webb/tangle/types/build":
+"@webb-tools/tangle-substrate-types@^0.5.4":
   version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@webb-tools/tangle-substrate-types/-/tangle-substrate-types-0.5.4.tgz#793b69d0e85c18a8d627dfb77be19ea61926444b"
+  integrity sha512-8TEITXJrioETmJXVoePZXBYL+DZBMHHMycstDf7e5zU/V9f/nGFojXs6NK+i+fylwwTbgR8HXTCu7AywM+X7Cg==
   dependencies:
     "@babel/cli" "^7.23.9"
     "@babel/core" "^7.24.0"
