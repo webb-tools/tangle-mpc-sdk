@@ -5,7 +5,7 @@ import type { HexString } from "@polkadot/util/types";
 
 export const getTxPromise = async (
   keyringPair: KeyringPair,
-  tx: SubmittableExtrinsic<"promise", ISubmittableResult>
+  tx: SubmittableExtrinsic<"promise", ISubmittableResult>,
 ): Promise<HexString> => {
   return new Promise((resolve, reject) => {
     tx.signAndSend(
@@ -45,7 +45,7 @@ export const getTxPromise = async (
             }
           }
         }
-      }
+      },
     );
   });
 };

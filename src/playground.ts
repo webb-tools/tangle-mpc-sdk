@@ -27,7 +27,7 @@ import { Role, SERVICE_TYPE_TO_TANGLE_MAP } from "./roles/types";
           amount: new BN("10000000000000000000"),
         },
       },
-      10
+      10,
     );
 
     console.log(`Alice's profile creation transaction hash: ${hash1}`);
