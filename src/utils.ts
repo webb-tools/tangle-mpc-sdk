@@ -5,7 +5,7 @@ import type { HexString } from "@polkadot/util/types";
 
 export const getTxPromise = async (
   keyringPair: KeyringPair,
-  tx: SubmittableExtrinsic<"promise", ISubmittableResult>,
+  tx: SubmittableExtrinsic<"promise", ISubmittableResult>
 ): Promise<HexString> => {
   return new Promise((resolve, reject) => {
     tx.signAndSend(
@@ -16,7 +16,6 @@ export const getTxPromise = async (
         nonce: -1,
       },
       ({ status, dispatchError, events }) => {
-        console.log("status :", status.isInBlock, status.isFinalized);
         if (status.isInBlock || status.isFinalized) {
           for (const event of events) {
             const {
@@ -41,13 +40,12 @@ export const getTxPromise = async (
               }
 
               reject(message);
-              // TODO: Tx status is never finalized, so the function will never resolve
             } else if (method === "ExtrinsicSuccess" && status.isFinalized) {
               resolve(status.asFinalized.toHex());
             }
           }
         }
-      },
+      }
     );
   });
 };
