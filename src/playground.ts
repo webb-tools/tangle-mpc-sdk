@@ -1,9 +1,8 @@
 import { Keyring } from "@polkadot/keyring";
-import { BN, BN_ZERO } from "@polkadot/util";
 import { cryptoWaitReady } from "@polkadot/util-crypto";
 
 import Account from "./account";
-import { Role, SERVICE_TYPE_TO_TANGLE_MAP } from "./roles/types";
+import { BN, Role } from "./types";
 
 (async () => {
   try {
@@ -20,8 +19,7 @@ import { Role, SERVICE_TYPE_TO_TANGLE_MAP } from "./roles/types";
         Shared: {
           records: [
             {
-              role: SERVICE_TYPE_TO_TANGLE_MAP[Role.TSS_DFNS_CGGMP21SECP256K1],
-              amount: BN_ZERO,
+              role: Role.TSS_DFNS_CGGMP21SECP256K1,
             },
           ],
           amount: new BN("10000000000000000000"),
@@ -37,11 +35,11 @@ import { Role, SERVICE_TYPE_TO_TANGLE_MAP } from "./roles/types";
       Independent: {
         records: [
           {
-            role: SERVICE_TYPE_TO_TANGLE_MAP[Role.TSS_DFNS_CGGMP21SECP256K1],
+            role: Role.TSS_DFNS_CGGMP21SECP256K1,
             amount: new BN("10000000000000000000"),
           },
           {
-            role: SERVICE_TYPE_TO_TANGLE_MAP[Role.TSS_DFNS_CGGMP21SECP256R1],
+            role: Role.TSS_DFNS_CGGMP21SECP256R1,
             amount: new BN("10000000000000000000"),
           },
         ],

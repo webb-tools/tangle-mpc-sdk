@@ -1,8 +1,9 @@
 import { KeyringPair } from "@polkadot/keyring/types";
 
 import { getTangleApi } from "../api";
-import { getTxPromise } from "../utils";
-import type { Profile } from "./types";
+import { Profile } from "../types";
+import { getTxPromise } from "../utils/tx";
+import { convertToValidApiParam } from "./utils";
 
 /**
  * CreateProfile on Roles pallet
@@ -20,7 +21,7 @@ export async function createProfile(
   const api = await getTangleApi();
 
   const createProfileTx = api.tx.roles.createProfile(
-    profile,
+    convertToValidApiParam(profile),
     maxActiveServices,
   );
 
@@ -55,7 +56,9 @@ export async function updateProfile(
 ) {
   const api = await getTangleApi();
 
-  const updateProfileTx = api.tx.roles.updateProfile(profile);
+  const updateProfileTx = api.tx.roles.updateProfile(
+    convertToValidApiParam(profile),
+  );
 
   const hash = await getTxPromise(keyRingPair, updateProfileTx);
 
