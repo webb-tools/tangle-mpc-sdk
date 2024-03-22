@@ -65,6 +65,7 @@ export async function updateProfile(
   return hash;
 }
 
+// TODO: add tests for all the functions
 /**
  * The class to allow users to perform tx on Roles Pallet on Tangle Network
  */
