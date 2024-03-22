@@ -4,6 +4,7 @@ import type { TanglePrimitivesJobsJobSubmission } from "@polkadot/types/lookup";
 
 import type { FallbackOptions, JobType, SubmitJobResult } from "./types";
 
+// TODO: add comments + use getTxPromise + add to Account class
 async function submitJob(
   api: ApiPromise,
   account: AddressOrPair,

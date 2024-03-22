@@ -40,8 +40,16 @@
     "typescript": "^5.4.2"
   },
   "dependencies": {
-    "@polkadot/api": "^10.12.2",
+    "@polkadot/api": "^10.12.4",
     "@polkadot/keyring": "^12.6.2",
+    "@polkadot/types": "^10.12.4",
+    "@polkadot/util-crypto": "^12.6.2",
+    "@webb-tools/tangle-substrate-types": "^0.5.4"
+  },
+  "resolutions": {
+    "@polkadot/api": "^10.12.4",
+    "@polkadot/keyring": "^12.6.2",
+    "@polkadot/types": "^10.12.4",
     "@polkadot/util-crypto": "^12.6.2",
     "@webb-tools/tangle-substrate-types": "^0.5.4",
     "get-port": "6.1.2",
