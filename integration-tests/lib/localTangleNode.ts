@@ -1,4 +1,3 @@
-/* eslint-disable import/order */
 import "@webb-tools/tangle-substrate-types";
 
 import { ApiPromise, Keyring, WsProvider } from "@polkadot/api";
@@ -9,12 +8,12 @@ const TANGLE_DOCKER_IMAGE_URL =
   "ghcr.io/webb-tools/tangle/tangle-standalone-integration-tests:main";
 
 export type DockerMode = {
-  mode: "docker";
+  mode: string;
   forcePullImage: boolean;
 };
 
 export type HostMode = {
-  mode: "host";
+  mode: string;
   nodePath: string;
 };
 
@@ -59,10 +58,12 @@ export class LocalTangleNode {
     // opts.usageMode.mode = 'docker'
     const startArgs: string[] = [];
     if (opts.usageMode.mode === "docker") {
-      this.pullImage({
-        forcePull: opts.usageMode.forcePullImage,
-        image: TANGLE_DOCKER_IMAGE_URL,
-      });
+      if (opts.usageMode.mode === "docker") {
+        this.pullImage({
+          forcePull: (opts.usageMode as DockerMode).forcePullImage,
+          image: TANGLE_DOCKER_IMAGE_URL,
+        });
+      }
       const dockerArgs = [
         "run",
         "--rm",
@@ -108,7 +109,11 @@ export class LocalTangleNode {
         `--port=${opts.ports.p2p}`,
         `--${opts.authority}`,
       );
-      const proc = spawn(opts.usageMode.nodePath, startArgs);
+      if (opts.usageMode.mode !== "docker") {
+        throw new Error("Invalid usage mode");
+      }
+
+      const proc = spawn((opts.usageMode as HostMode).nodePath, startArgs);
       if (opts.enableLogging) {
         proc.stdout.on("data", (data: Buffer) => {
           console.log(data.toString());

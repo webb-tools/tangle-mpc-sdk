@@ -5,19 +5,21 @@
     "esModuleInterop": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
+    "noImplicitAny": false,
     "lib": ["es6", "dom"],
-    "module": "commonjs",
+    "module": "ESNext",
     "moduleResolution": "node",
     "outDir": "dist",
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "target": "es5"
+    "target": "ESNext",
   },
   "include": [
     "./src/**/*.ts",
     "./node_modules/@polkadot/api",
-    "./node_modules/@webb-tools/tangle-substrate-types"
+    "./node_modules/@webb-tools/tangle-substrate-types",
+    "./integration-tests/**/*.ts",
   ],
   "exclude": ["node_modules", "**/node_modules/*"]
 }

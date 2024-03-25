@@ -3,7 +3,7 @@ import "@webb-tools/tangle-substrate-types";
 import isCi from "is-ci";
 import path from "path";
 
-import { LocalTangleNode, UsageMode } from "./lib/localTangleNode";
+import { DockerMode, HostMode, LocalTangleNode, UsageMode } from "./lib/localTangleNode";
 
 describe("Substrate SignatureBridge Governor Update", function () {
   // Tangle nodes
@@ -11,11 +11,11 @@ describe("Substrate SignatureBridge Governor Update", function () {
 
   before(async () => {
     const usageMode: UsageMode = isCi
-      ? { mode: "docker", forcePullImage: false }
+      ? { mode: "docker", forcePullImage: false } as DockerMode
       : {
           mode: "host",
           nodePath: path.resolve("../../tangle/target/release/tangle"),
-        };
+        } as HostMode;
 
     // start tangle nodes.
     aliceNode = await LocalTangleNode.start({
