@@ -3,7 +3,7 @@ import isCi from "is-ci";
 import path from "path";
 import { LocalTangleNode, UsageMode } from "./lib/localTangleNode";
 
-describe("Substrate SignatureBridge Governor Update", function () {
+describe("Tangle Test", function () {
   // Tangle nodes
   let aliceNode: LocalTangleNode;
 
