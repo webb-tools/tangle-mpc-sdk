@@ -14,7 +14,9 @@ describe("Substrate SignatureBridge Governor Update", function () {
       ? { mode: "docker", forcePullImage: false }
       : {
           mode: "host",
-          nodePath: path.resolve("../../tangle/target/release/tangle"),
+          nodePath: path.resolve(
+            "/Volumes/tins_ssd/webb/tangle/target/release/tangle",
+          ),
         };
 
     // start tangle nodes.
