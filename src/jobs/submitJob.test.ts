@@ -17,7 +17,7 @@ describe("submitJob()", () => {
     api = await ApiPromise.create({ provider, noInitWarn: true });
   });
 
-  test("should submit a job and return the job id", async () => {
+  it("should submit a job and return the job id", async () => {
     await api.isReadyOrError;
 
     // Initialize keyring for sr25519 type

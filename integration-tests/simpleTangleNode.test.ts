@@ -5,7 +5,7 @@ import path from "path";
 
 import { LocalTangleNode, UsageMode } from "./lib/localTangleNode";
 
-describe("Substrate SignatureBridge Governor Update", function () {
+describe("Tangle test", function () {
   // Tangle nodes
   let aliceNode: LocalTangleNode;
 
@@ -14,7 +14,7 @@ describe("Substrate SignatureBridge Governor Update", function () {
       ? { mode: "docker", forcePullImage: false }
       : {
           mode: "host",
-          nodePath: path.resolve("../../tangle/target/release/tangle"),
+          nodePath: path.resolve("../tangle/target/release/tangle"),
         };
 
     // start tangle nodes.
