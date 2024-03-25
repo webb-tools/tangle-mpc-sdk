@@ -6,5 +6,9 @@
   "node-option": [
     "experimental-specifier-resolution=node",
     "loader=ts-node/esm"
-  ]
+  ],
+  "timeout": 600000,
+  "jobs": 1,
+  "parallel": false
+  
 }
