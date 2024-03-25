@@ -3,6 +3,7 @@ import "@webb-tools/tangle-substrate-types";
 import { ApiPromise, Keyring, WsProvider } from "@polkadot/api";
 import { SubmittableExtrinsic } from "@polkadot/api/types";
 import { ChildProcess, execSync, spawn } from "child_process";
+import getPort, { portNumbers } from "get-port";
 
 const TANGLE_DOCKER_IMAGE_URL =
   "ghcr.io/webb-tools/tangle/tangle-standalone-integration-tests:main";
@@ -133,15 +134,11 @@ export class LocalTangleNode {
   public static async makePorts(
     opts: LocalNodeOpts,
   ): Promise<{ ws: number; http: number; p2p: number }> {
-    // Dynamic import used for commonjs compatibility
-    const getPort = await import("get-port");
-    const { portNumbers } = getPort;
-
     return opts.ports === "auto"
       ? {
-          http: await getPort.default({ port: portNumbers(9933, 9999) }),
-          p2p: await getPort.default({ port: portNumbers(30333, 30399) }),
-          ws: await getPort.default({ port: portNumbers(9944, 9999) }),
+          http: await getPort({ port: portNumbers(9933, 9999) }),
+          p2p: await getPort({ port: portNumbers(30333, 30399) }),
+          ws: await getPort({ port: portNumbers(9944, 9999) }),
         }
       : (opts.ports as { ws: number; http: number; p2p: number });
   }

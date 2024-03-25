@@ -7,7 +7,6 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "lib": ["es6", "dom"],
-    "module": "ESNext",
     "moduleResolution": "node",
     "outDir": "dist",
     "skipLibCheck": true,
